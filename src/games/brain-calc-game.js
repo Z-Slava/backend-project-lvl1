@@ -1,19 +1,16 @@
 import readlineSync from 'readline-sync';
 
-import { showWelcomeMessage, askUserName, greetUserByName } from './cli.js';
+import { showWelcomeMessage, askUserName, greetUserByName } from '../cli.js';
+import { getRandomNumber, getRandomOperation } from '../utils/index.js';
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * max + min);
+const getCorrectAnswer = (number1, number2, operation) => {
+  const mapping = {
+    '+': number1 + number2,
+    '-': number1 - number2,
+    '*': number1 * number2,
+  };
 
-const isEven = (number) => number % 2 === 0;
-
-const getCorrectAnswer = (number) => {
-  const booleanAnswer = isEven(number);
-  return booleanAnswer === true ? 'yes' : 'no';
-};
-
-const isAnswerValid = (answer) => {
-  const validOptions = ['yes', 'no'];
-  return validOptions.includes(answer);
+  return mapping[operation];
 };
 
 const showFailMessage = (userAnswer, correctAnswer) => {
@@ -25,16 +22,16 @@ const showFailMessage = (userAnswer, correctAnswer) => {
 const playRound = () => {
   const minNumber = 1;
   const maxNumber = 25;
-  const number = getRandomNumber(minNumber, maxNumber);
+  const availableOperations = ['+', '-', '*'];
 
-  console.log(`Question: ${number}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = getCorrectAnswer(number);
+  const number1 = getRandomNumber(minNumber, maxNumber);
+  const number2 = getRandomNumber(minNumber, maxNumber);
+  const operation = getRandomOperation(availableOperations);
 
-  if (!isAnswerValid(userAnswer)) {
-    showFailMessage(userAnswer, correctAnswer);
-    return false;
-  }
+  console.log(`Question: ${number1} ${operation} ${number2}`);
+  const userAnswer = readlineSync.questionInt('Your answer: ');
+  const correctAnswer = getCorrectAnswer(number1, number2, operation);
+
   if (userAnswer !== correctAnswer) {
     showFailMessage(userAnswer, correctAnswer);
     return false;
@@ -54,7 +51,7 @@ const playGame = () => {
   const name = askUserName();
   greetUserByName(name);
 
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  console.log('What is the result of the expression?');
 
   for (
     let i = 0;
