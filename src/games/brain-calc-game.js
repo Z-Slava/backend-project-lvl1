@@ -1,7 +1,11 @@
 import readlineSync from 'readline-sync';
 
-import { showWelcomeMessage, askUserName, greetUserByName } from '../cli.js';
+import { showFailMessage } from '../cli.js';
 import { getRandomNumber, getRandomOperation } from '../utils/index.js';
+
+const showGameRules = () => {
+  console.log('What is the result of the expression?');
+};
 
 const getCorrectAnswer = (number1, number2, operation) => {
   const mapping = {
@@ -13,15 +17,9 @@ const getCorrectAnswer = (number1, number2, operation) => {
   return mapping[operation];
 };
 
-const showFailMessage = (userAnswer, correctAnswer) => {
-  console.log(
-    `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`,
-  );
-};
-
 const playRound = () => {
   const minNumber = 1;
-  const maxNumber = 25;
+  const maxNumber = 15;
   const availableOperations = ['+', '-', '*'];
 
   const number1 = getRandomNumber(minNumber, maxNumber);
@@ -42,28 +40,19 @@ const playRound = () => {
   return true;
 };
 
-const playGame = () => {
-  const numberOfRounds = 3;
+const playGame = (numberOfRounds) => {
   let isRoundSuccessful = true;
 
-  showWelcomeMessage();
-
-  const name = askUserName();
-  greetUserByName(name);
-
-  console.log('What is the result of the expression?');
-
-  for (
-    let i = 0;
-    i < numberOfRounds && isRoundSuccessful === true;
-    i += 1
-  ) {
+  for (let i = 0; i < numberOfRounds && isRoundSuccessful === true; i += 1) {
     isRoundSuccessful = playRound();
   }
 
-  if (isRoundSuccessful) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  return isRoundSuccessful;
 };
 
-export default playGame;
+const game = {
+  showGameRules,
+  playGame,
+};
+
+export default game;

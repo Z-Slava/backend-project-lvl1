@@ -1,8 +1,11 @@
 import readlineSync from 'readline-sync';
 
-import { showWelcomeMessage, askUserName, greetUserByName } from '../cli.js';
+import { showFailMessage } from '../cli.js';
+import { getRandomNumber } from '../utils/index.js';
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * max + min);
+const showGameRules = () => {
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+};
 
 const isEven = (number) => number % 2 === 0;
 
@@ -14,12 +17,6 @@ const getCorrectAnswer = (number) => {
 const isAnswerValid = (answer) => {
   const validOptions = ['yes', 'no'];
   return validOptions.includes(answer);
-};
-
-const showFailMessage = (userAnswer, correctAnswer) => {
-  console.log(
-    `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`,
-  );
 };
 
 const playRound = () => {
@@ -45,28 +42,19 @@ const playRound = () => {
   return true;
 };
 
-const playGame = () => {
-  const numberOfRounds = 3;
+const playGame = (numberOfRounds) => {
   let isRoundSuccessful = true;
 
-  showWelcomeMessage();
-
-  const name = askUserName();
-  greetUserByName(name);
-
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
-
-  for (
-    let i = 0;
-    i < numberOfRounds && isRoundSuccessful === true;
-    i += 1
-  ) {
+  for (let i = 0; i < numberOfRounds && isRoundSuccessful === true; i += 1) {
     isRoundSuccessful = playRound();
   }
 
-  if (isRoundSuccessful) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  return isRoundSuccessful;
 };
 
-export default playGame;
+const game = {
+  showGameRules,
+  playGame,
+};
+
+export default game;

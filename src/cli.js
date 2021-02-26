@@ -13,6 +13,18 @@ export const greetUserByName = (name) => {
   console.log(`Hello, ${name}!`);
 };
 
+export const showFailMessage = (userAnswer, correctAnswer) => {
+  console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
+};
+
+export const showCongratMessage = (name) => {
+  console.log(`Congratulations, ${name}!`);
+};
+
+export const showRetryMessage = (name) => {
+  console.log(`Let's try again, ${name}!`);
+};
+
 const askNameAndShowGreetMessage = () => {
   showWelcomeMessage();
   const name = askUserName();
