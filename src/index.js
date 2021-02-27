@@ -15,9 +15,13 @@ const playGame = (game) => {
   greetUserByName(name);
 
   game.showGameRules();
-  const isGameSuccessful = game.playGame(numberOfRounds);
 
-  if (isGameSuccessful) {
+  let isRoundSuccessful = true;
+  for (let i = 0; i < numberOfRounds && isRoundSuccessful === true; i += 1) {
+    isRoundSuccessful = game.playRound();
+  }
+
+  if (isRoundSuccessful) {
     showCongratMessage(name);
   } else {
     showRetryMessage(name);

@@ -40,19 +40,9 @@ const playRound = () => {
   return true;
 };
 
-const playGame = (numberOfRounds) => {
-  let isRoundSuccessful = true;
-
-  for (let i = 0; i < numberOfRounds && isRoundSuccessful === true; i += 1) {
-    isRoundSuccessful = playRound();
-  }
-
-  return isRoundSuccessful;
-};
-
 const game = {
   showGameRules,
-  playGame,
+  playRound,
 };
 
 export default game;
