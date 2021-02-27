@@ -14,7 +14,7 @@ export const greetUserByName = (name) => {
 };
 
 export const showFailMessage = (userAnswer, correctAnswer) => {
-  console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
+  console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
 };
 
 export const showCongratMessage = (name) => {
