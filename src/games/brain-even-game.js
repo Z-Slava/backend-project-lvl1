@@ -15,9 +15,10 @@ const getCorrectAnswer = (number) => {
 };
 
 const playRound = () => {
-  const minNumber = 1;
-  const maxNumber = 25;
-  const number = getRandomNumber(minNumber, maxNumber);
+  const minEven = 1;
+  const maxEven = 25;
+
+  const number = getRandomNumber(minEven, maxEven);
 
   console.log(`Question: ${number}`);
   const userAnswer = readlineSync.question('Your answer: ');

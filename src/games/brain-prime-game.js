@@ -24,10 +24,10 @@ const isPrime = (number) => {
 const getCorrectAnswer = (number) => (isPrime(number) ? 'yes' : 'no');
 
 const playRound = () => {
-  const minNumber = 1;
-  const maxNumber = 100;
+  const minPrime = 1;
+  const maxPrime = 100;
 
-  const number = getRandomNumber(minNumber, maxNumber);
+  const number = getRandomNumber(minPrime, maxPrime);
 
   console.log(`Question: ${number}`);
   const userAnswer = readlineSync.question('Your answer: ');
