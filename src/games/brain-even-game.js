@@ -14,11 +14,6 @@ const getCorrectAnswer = (number) => {
   return booleanAnswer === true ? 'yes' : 'no';
 };
 
-const isAnswerValid = (answer) => {
-  const validOptions = ['yes', 'no'];
-  return validOptions.includes(answer);
-};
-
 const playRound = () => {
   const minNumber = 1;
   const maxNumber = 25;
@@ -28,10 +23,6 @@ const playRound = () => {
   const userAnswer = readlineSync.question('Your answer: ');
   const correctAnswer = getCorrectAnswer(number);
 
-  if (!isAnswerValid(userAnswer)) {
-    showFailMessage(userAnswer, correctAnswer);
-    return false;
-  }
   if (userAnswer !== correctAnswer) {
     showFailMessage(userAnswer, correctAnswer);
     return false;
