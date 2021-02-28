@@ -1,7 +1,4 @@
-import readlineSync from 'readline-sync';
-
-import { showFailMessage } from '../cli.js';
-import { getRandomNumber } from '../utils/index.js';
+import generateSimpleGame from './simple-game.js';
 
 const showGameRules = () => {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
@@ -14,25 +11,10 @@ const getCorrectAnswer = (number) => {
   return booleanAnswer === true ? 'yes' : 'no';
 };
 
-const playRound = () => {
-  const minEven = 1;
-  const maxEven = 25;
+const minNumber = 1;
+const maxNumber = 25;
 
-  const number = getRandomNumber(minEven, maxEven);
-
-  console.log(`Question: ${number}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = getCorrectAnswer(number);
-
-  if (userAnswer !== correctAnswer) {
-    showFailMessage(userAnswer, correctAnswer);
-    return false;
-  }
-
-  console.log('Correct!');
-
-  return true;
-};
+const playRound = generateSimpleGame(minNumber, maxNumber, getCorrectAnswer);
 
 const game = {
   showGameRules,
