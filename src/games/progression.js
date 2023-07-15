@@ -28,7 +28,8 @@ const hideProgressionNumber = (progression) => {
 
 export const getQuestionAndAnswer = () => {
   const progression = generateArithmeticProgression();
-  const [question, correctAnswer] = hideProgressionNumber(progression);
+  const [hiddenProgression, correctAnswer] = hideProgressionNumber(progression);
+  const formattedQuestion = hiddenProgression.join(' ');
 
-  return [question, String(correctAnswer)];
+  return [formattedQuestion, String(correctAnswer)];
 };
