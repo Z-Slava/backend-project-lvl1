@@ -9,7 +9,7 @@ export const RULES = 'Answer "yes" if the number is even, otherwise answer "no".
 
 export const getQuestionAndAnswer = () => {
   const randomNumber = utils.generateRandomNumber(MAX_NUMBER);
-  const answer = utils.isEven(randomNumber) ? POSITIVE_ANSWER : NEGATIVE_ANSWER;
+  const correctAnswer = utils.isEven(randomNumber) ? POSITIVE_ANSWER : NEGATIVE_ANSWER;
 
-  return [randomNumber, answer];
+  return [randomNumber, correctAnswer];
 };

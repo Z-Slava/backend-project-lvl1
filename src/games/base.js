@@ -29,7 +29,7 @@ const playGame = (rules, getQuestionAndAnswer, numberOfRounds) => {
   return isPlayerWinner;
 };
 
-export const runGame = (rules, getQuestionAndAnswer, numberOfRounds = DEFAULT_NUMBER_OF_ROUNDS) => {
+export default (rules, getQuestionAndAnswer, numberOfRounds = DEFAULT_NUMBER_OF_ROUNDS) => {
   cli.sendWelcomeMessage();
   const userName = cli.requestUserName();
   const userBasedMessages = cli.createUserBasedMessages(userName);
